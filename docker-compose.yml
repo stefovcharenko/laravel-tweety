@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+
+  db:
+    container_name: laravel-tweety-db
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_USER: laravel-tweety
+      MYSQL_PASSWORD: larapass
+      MYSQL_DATABASE: laravel
+
+  nginx:
+    container_name: laravel-tweety-nginx
+    image: nginx:alpine
+    depends_on:
+      - app
+    volumes:
+      - ./:/app
+      - ./docker/nginx/:/etc/nginx/conf.d/
+    ports:
+      - "80:80"
+
+  app:
+    build: .
+    container_name: laravel-tweety-app
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+
+volumes:
+  mysql:
