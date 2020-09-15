@@ -1,17 +1,20 @@
 <div class="border border-blue-400 rounded-lg px-8 py-6 mb-8">
-    <form action="">
-                    <textarea
-                        name="body"
-                        class="w-full"
-                        placeholder="What's up doc?"
-                    ></textarea>
+    <form method="POST" action="/tweets">
+        @csrf
+
+        <textarea
+            name="body"
+            class="w-full"
+            placeholder="What's up doc?"
+            required
+        ></textarea>
 
         <hr class="my-4">
 
         <footer class="flex justify-between">
             <img
-                src="https://eu.ui-avatars.com/api/?size=40"
-                alt=""
+                src="{{ auth()->user()->avatar }}"
+                alt="Your avatar"
                 class="rounded-full"
             >
 
@@ -19,4 +22,8 @@
         </footer>
 
     </form>
+
+    @error('body')
+        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+    @enderror
 </div>
