@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function tweets()
     {
-        $this->belongsToMany(Tweet::class);
+        return $this->hasMany(Tweet::class);
     }
 
     public function follow(User $user)
@@ -71,4 +71,11 @@ class User extends Authenticatable
             'following_user_id'
         );
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
+
 }
