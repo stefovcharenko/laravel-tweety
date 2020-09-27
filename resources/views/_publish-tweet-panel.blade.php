@@ -16,6 +16,7 @@
                 src="{{ auth()->user()->avatar }}"
                 alt="Your avatar"
                 class="rounded-full"
+                width="40"
             >
 
             <button type="submit" class="bg-blue-500 shadow rounded-lg py-2 px-2 text-white">Tweet-a-roo!</button>
@@ -24,6 +25,6 @@
     </form>
 
     @error('body')
-        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
     @enderror
 </div>
