@@ -10,14 +10,16 @@
         </a>
     </div>
     <div>
-        <h5 class="font-bold mb-4">
+        <h5 class="font-bold mb-2">
             <a href="{{ $tweet->user->path() }}">
                 {{ $tweet->user->name }}
             </a>
         </h5>
 
-        <p class="text-sm">
+        <p class="text-sm mb-3">
             {{ $tweet->body }}
         </p>
+
+        <x-like-buttons :tweet="$tweet"/>
     </div>
 </div>
